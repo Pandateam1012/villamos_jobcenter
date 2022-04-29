@@ -7,10 +7,8 @@ Config.Positions = {
 }
 
 Config.Jobs = {
---['job'] = "leírás",
+    --['job'] = "leírás",
     ['unemployed'] = "Inkább nem dolgozom.",
-    ['miner'] = "Egyszerűen végezhető munka a városon kívül, jó fizetéssel.",
-    ['fisherman'] = "Egyszerű, nyugalmas munka a városon belül.",
 }
 
 Config.Webhook = false
