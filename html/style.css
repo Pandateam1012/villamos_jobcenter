@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+body {
+    display: none;
+    background-color: transparent;
+}
+#app {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 600px;
+    height: 680px;
+
+    background-color: rgba(0, 0, 0, 0.774);
+
+    border-radius: 20px;
+    border: 5px solid white;
+    
+    overflow: auto;
+    font-family: 'Nunito', sans-serif;
+    color: white;
+    text-align: center;
+
+    padding: 10px 10px 10px 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px; 
+    right: 15px; 
+    font-size: 1.5rem;
+    color: white;
+    transition: all 1s;
+}
+.close-btn:hover {
+    color: black;
+}
+
+.search {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    width: 80%;
+}
+.form-control {
+    background-color:  transparent!important;
+    color: white!important;
+}
+.form-control::placeholder {
+    color: white!important;
+    opacity: 1;
+}
+.input-group-text {
+    background-color:  transparent!important;
+    color: white!important;
+}
+
+.job-list {
+    display: flex;
+    justify-content: center;
+}
+
+.job {
+    width: 250px;
+    height: 300px;
+    margin: 5px;
+    padding: 5px 5px 5px 5px;
+    background-color: black;
+    color: white;
+    overflow: auto;
+    border: 2px solid white;
+
+    overflow: auto;
+
+    font-size: 90%;
+}
+
+.job img {
+    margin-top: 5px;
+    height: 120px;
+    object-fit: contain;
+}
+
+.job button {
+    border: 1px solid white;
+    color: white;
+    transition: all 1s;
+}
+.job button:hover {
+    background-color: white;
+    color: black;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(220, 220, 220);
+}
