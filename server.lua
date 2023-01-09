@@ -1,3 +1,5 @@
+Config.Webhook = false
+
 local jobs = {}
 
 
