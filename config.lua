@@ -1,4 +1,4 @@
-Config = {}
+Config = {} --FIGYELEM! A webhookot a server.lua-ban lehet megadni
 
 Config.QTarget = false
 
@@ -10,8 +10,6 @@ Config.Jobs = {
     --['job'] = "leírás",
     ['unemployed'] = "Inkább nem dolgozom.",
 }
-
-Config.Webhook = false
 
 Config.KickMessage = "Hekker!" --set to false to don't kick
 
