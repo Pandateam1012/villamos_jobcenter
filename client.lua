@@ -1,4 +1,3 @@
-ESX = nil
 local isInUi = false
 
 function SetNuiState(state)
@@ -27,17 +26,16 @@ end)
 
 RegisterNetEvent('villamos_jobcenter:setJobs')
 AddEventHandler('villamos_jobcenter:setJobs', function(data)
-    Citizen.Wait(3000)
+        Wait(3000)
 	SendNUIMessage({
 		type = "setjobs",
 		jobs = data,
 	})
 end)
 
-Citizen.CreateThread(function()
-    while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-		Citizen.Wait(10)
+CreateThread(function()
+    while not ESX or not ESX.PlayerLoaded do
+		Wait(10)
 	end
 
     if not Config.QTarget then 
@@ -48,7 +46,7 @@ Citizen.CreateThread(function()
         if IsModelInCdimage(Config.Positions[i].model) then 
             RequestModel(Config.Positions[i].model)
             while not HasModelLoaded(Config.Positions[i].model) do
-                Citizen.Wait(1)
+                Wait(1)
             end
             local ped = CreatePed(1, Config.Positions[i].model, Config.Positions[i].x, Config.Positions[i].y, Config.Positions[i].z, Config.Positions[i].h, false, false)
             PlaceObjectOnGroundProperly(ped)
@@ -85,7 +83,7 @@ Citizen.CreateThread(function()
                 Config.Positions[i].marker = GetOffsetFromEntityInWorldCoords(ped, 0.0, 0.8, -1.0)
             end 
             
-            Citizen.Wait(10)
+            Wait(10)
         else 
             print("FIGYELEM! Érvénytelen ped model hash: "..Config.Positions[i].model)
         end 
@@ -94,17 +92,17 @@ Citizen.CreateThread(function()
     TriggerServerEvent("villamos_jobcenter:login")
 
     while true do 
-        local coords = GetEntityCoords(GetPlayerPed(-1))
+        local coords = GetEntityCoords(PlayerPedId())
         local sleep = 1000
 
         for _, v in pairs(Config.Positions) do 
-            if GetDistanceBetweenCoords(coords, v.x, v.y, v.z, true) < 20 then 
+            if #(coords - vector3(v.x, v.y, v.z)) < 20 then 
                 sleep = 2
                 DrawText3D(v.x, v.y, v.z+2.1, v.name)
                 if not Config.QTarget then 
                     DrawMarker(6, v.marker.x, v.marker.y, v.marker.z, 0.0, 0.0, 0.0, -90.0, 0.0, 0.0, 1.5, 1.5, 1.5, 0, 155, 20, 100, false, true, 2, false, false, false, false)
                     DrawMarker(21, v.marker.x, v.marker.y, v.marker.z+0.6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.8, 0.8, 0.8, 0, 155, 20, 100, false, true, 2, false, false, false, false)
-                    if GetDistanceBetweenCoords(coords, v.marker.x, v.marker.y, v.marker.z+0.6, true) < 1.5 then 
+                    if #(coords - vector3(v.marker.x, v.marker.y, v.marker.z+0.6)) < 1.5 then 
                         DisplayHelpTextThisFrame('jobcenter_open_msg')
                         if IsControlJustReleased(0, 38) then
                             SetNuiState(true)
@@ -114,7 +112,7 @@ Citizen.CreateThread(function()
             end 
         end 
 
-        Citizen.Wait(sleep)
+        Wait(sleep)
     end 
 end)
 
