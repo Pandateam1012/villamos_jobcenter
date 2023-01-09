@@ -1,7 +1,5 @@
-ESX = nil
 local jobs = {}
 
-TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 AddEventHandler('onResourceStart', function(res)
 	if res == GetCurrentResourceName() then
