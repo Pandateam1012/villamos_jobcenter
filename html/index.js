@@ -2,10 +2,18 @@ const App = Vue.createApp({
     data() {
       return {
         jobs: [
-            //{name:"ambulance", label:"Mentő", text:"asdasadasdasddasdasd"},
+            {name:"unemployed", label:"Unemployed", text:"I don't want to work"},
         ],
 
-        search : ""
+        locales : {
+            nui_label:"Jobcenter",
+            nui_choosejob:"Choose job",
+            nui_search:"Search for job name"
+        },
+
+        search : "",
+
+        opened : false
       }
     },
     computed: {
@@ -20,6 +28,22 @@ const App = Vue.createApp({
         }
     },
     methods: {
+        onMessage(event) {
+            if (event.data.type == "show") {
+                const appelement = document.getElementById("app");
+                if (event.data.enable) {
+                    appelement.style.display = "block";
+                    appelement.style.animation = "hopin 0.7s";
+                    this.opened = true;
+                } else {
+                    appelement.style.animation = "hopout 0.6s";
+                    this.opened = false;
+                    setTimeout(() => {
+                        if (!this.opened) appelement.style.display = "none";
+                    }, 500);
+                }
+            }
+        },
         close() {
             fetch(`https://${GetParentResourceName()}/exit`);
         },
@@ -32,14 +56,11 @@ const App = Vue.createApp({
             });
         }
     }, 
-    mounted() {
-        var _this = this;
-        window.addEventListener('message', function(event) {
-            if (event.data.type == "show") {
-                document.body.style.display = event.data.enable ? "block" : "none";
-            } else if (event.data.type == "setjobs") {
-                _this.jobs = event.data.jobs;
-            }
-        });
+    async mounted() {
+        window.addEventListener('message', this.onMessage);
+        var response = await fetch(`https://${GetParentResourceName()}/data`);
+        var data = await response.json();
+        this.locales = data.locales;
+        this.jobs = data.jobs;
     }
 }).mount('#app');

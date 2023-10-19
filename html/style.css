@@ -1,23 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
 body {
-    display: none;
     background-color: transparent;
+    user-select: none;
 }
 #app {
+    display: none;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    width: 600px;
-    height: 680px;
+    width: 40%;
+    height: 70%;
 
-    background-color: rgba(0, 0, 0, 0.774);
+    background-color: #2a2a2a;
 
-    border-radius: 20px;
-    border: 5px solid white;
+    border-radius: 10px;
     
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     font-family: 'Nunito', sans-serif;
     color: white;
     text-align: center;
@@ -25,85 +26,148 @@ body {
     padding: 10px 10px 10px 10px;
 }
 
+.btn {
+    background-color: #3a3a3a;
+    color: white;
+    transition: all 1s;
+    font-family: 'Nunito', sans-serif;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #4f4f4f;
+}
+
+.btn:focus {
+    animation: onclick 0.5s;
+}
+.btn:active {
+    animation: none;
+}
+
 .close-btn {
     position: absolute;
     top: 15px; 
     right: 15px; 
     font-size: 1.5rem;
-    color: white;
-    transition: all 1s;
-}
-.close-btn:hover {
-    color: black;
 }
 
-.search {
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
-    width: 80%;
+.search-inp {
+    width: 60%;
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
-.form-control {
-    background-color:  transparent!important;
-    color: white!important;
+.search-icon {
+    background-color: #3a3a3a;
+    width: 5%;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1.2rem;
+    margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.form-control::placeholder {
-    color: white!important;
-    opacity: 1;
+.inp {
+    background-color: #3a3a3a;
+    color: white;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    padding: 5px;
+    width: 95%;
 }
-.input-group-text {
-    background-color:  transparent!important;
-    color: white!important;
+.inp:focus {
+    outline: none;
 }
+
 
 .job-list {
     display: flex;
     justify-content: center;
+    flex-wrap:wrap;
+    margin-top: 10px;
 }
-
 .job {
-    width: 250px;
-    height: 300px;
+    width: 18rem;
+    max-height: 20rem;
     margin: 5px;
-    padding: 5px 5px 5px 5px;
-    background-color: black;
-    color: white;
-    overflow: auto;
-    border: 2px solid white;
-
-    overflow: auto;
-
-    font-size: 90%;
+    background-color: #3a3a3a;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.job-title {
+    margin:5px;
+    margin-top: 8px;
+    font-size: 1.2rem;
+}
+.job-text {
+    margin:5px;
+    font-size: .9rem;
+}
+.job .btn {
+    margin-top:10px;
+    background-color: #32a852;
+}
+.job-img {
+    width:70%;
 }
 
-.job img {
-    margin-top: 5px;
-    height: 120px;
-    object-fit: contain;
+body::-webkit-scrollbar {
+    display: none;
+}
+#app::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);
+    border: 5px solid transparent;
+    border-radius: 10px;
+    background-clip: padding-box;  
+}
+#app::-webkit-scrollbar {
+    width: 16px;
 }
 
-.job button {
-    border: 1px solid white;
-    color: white;
-    transition: all 1s;
-}
-.job button:hover {
-    background-color: white;
-    color: black;
-}
 
-::-webkit-scrollbar {
-    width: 10px;
+
+@keyframes onclick {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(0.8, 0.8);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
 }
-::-webkit-scrollbar-track {
-    background: transparent;
-    border: 1px solid white;
-    border-radius: 5px;
+@keyframes hopin {
+    0% {
+        transform: translate(-50%, -50%) scale(0.1, 0.1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1, 1.1);
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(0.9, 0.9);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1, 1);
+    }
 }
-::-webkit-scrollbar-thumb {
-    background: white;
-    border-radius: 5px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: rgb(220, 220, 220);
+@keyframes hopout {
+    0% {
+        transform: translate(-50%, -50%) scale(1, 1);
+    }
+    20% {
+        transform: translate(-50%, -50%) scale(1.1, 1.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0.1, 0.1);
+    }
 }

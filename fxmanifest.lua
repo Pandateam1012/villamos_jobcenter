@@ -2,29 +2,31 @@ fx_version 'adamant'
 
 game 'gta5'
 
-description 'jobcenter by 6osvillamos#9280'
+lua54 "yes"
 
-version '1.0'
+description 'Jobcenter by 6osvillamos'
 
-ui_page('html/index.html') 
+version '1.1'
+
+ui_page 'html/index.html'
 
 files {
-	'html/index.html',
-  	'html/index.js',
-  	'html/style.css',
-    'html/img/*.png',
+  'html/**'
 }
 
-shared_script '@es_extended/imports.lua'
+shared_scripts {
+	'@es_extended/imports.lua',
+	'config/shared.lua',	
+	'@es_extended/locale.lua',
+	'locales/*.lua'
+}
 
 server_scripts {
-	'@mysql-async/lib/MySQL.lua',
-	'config.lua',
+	'config/server.lua',
 	'server.lua'
 }
 
 client_scripts {
-	'config.lua',
 	'client.lua'
 }
 
